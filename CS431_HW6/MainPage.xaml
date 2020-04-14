@@ -1,7 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="CS431_HW6.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" x:Class="CS431_HW6.MainPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:local="clr-namespace:CustomRenderer"
+             ios:Page.UseSafeArea="true">
+<StackLayout>
+    <StackLayout BackgroundColor="Blue">
+    <!--All of my homework includes this label at the top of the page.-->
+    <Label Margin="0,20,0,0"
+           FontSize="10"
+           FontAttributes="Italic"
+           TextColor="Gray"
+           Text="Assignment 5 by Olaf Zielinski"
+           HorizontalTextAlignment="Center"
+           VerticalTextAlignment="Start"> </Label>
+               
+        <local:MyEntry
+            x:Name="WordBoxInput"
+            Placeholder="Search for a word!"  
+            HorizontalOptions="Center"
+            Completed="Handle_QueryWord"
+            HorizontalTextAlignment="Center"
+            
+            />
     </StackLayout>
-</ContentPage>
+
+        <ListView x:Name="WordDataView" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="5">
+                            
+                            <Label
+                                Text="{Binding Type}"
+                                FontAttributes="Bold" />
+                            <Label
+                                Text="{Binding Definition}" />
+                            <Label
+                                Text="{Binding Example}"/>
+                            
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </StackLayout></ContentPage>
